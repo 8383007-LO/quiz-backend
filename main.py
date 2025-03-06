@@ -1,8 +1,16 @@
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, Query
 from pydantic import BaseModel
 import random
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Byt ut "*" mot frontend-URL om du vill begränsa åtkomst
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 quiz_questions = {
     "demokrati": [
